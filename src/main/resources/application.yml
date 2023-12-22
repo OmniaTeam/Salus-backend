@@ -10,7 +10,13 @@ spring:
       ddl-auto: update
   jackson:
     time-zone: Europe/Moscow
-
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 30553405509-girtoafgk1o7l03upa4dnegh1lcfh51r.apps.googleusercontent.com
+            client-secret: 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
 
 #server:
 #  port: 443
