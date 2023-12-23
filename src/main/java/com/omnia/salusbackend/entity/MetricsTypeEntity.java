@@ -17,10 +17,10 @@ public class MetricsTypeEntity {
     private String typeName;
 
 
-    @OneToMany(mappedBy = "metricsType")
-    private List<MetricsEntity> metrics = new ArrayList<>();
-
-    @OneToMany(mappedBy = "metricsType")
-    private List<SubjectEntity> subjects = new ArrayList<>();
+//    @OneToMany(mappedBy = "metricsType")
+//    private List<MetricsEntity> metrics = new ArrayList<>();
+//
+//    @OneToMany(mappedBy = "metricsType")
+//    private List<SubjectEntity> subjects = new ArrayList<>();
 
 }

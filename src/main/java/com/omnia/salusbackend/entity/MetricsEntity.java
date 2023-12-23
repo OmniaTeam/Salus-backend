@@ -15,12 +15,12 @@ public class MetricsEntity {
 
     //TODO:снести ебало
 
-    @ManyToOne
-    @JoinColumn(name = "worker_id", nullable = false)
-    private WorkerEntity worker;
-
-    @ManyToOne
-    @JoinColumn(name = "metrics_type_id", nullable = false)
-    private MetricsTypeEntity metricsType;
+//    @ManyToOne
+//    @JoinColumn(name = "worker_id", nullable = false)
+//    private WorkerEntity worker;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "metrics_type_id", nullable = false)
+//    private MetricsTypeEntity metricsType;
 
 }
