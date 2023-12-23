@@ -1,17 +1,12 @@
-package com.example.salusbackend.Service;
-import java.util.Collection;
-import java.util.Set;
-import java.util.stream.Collectors;
+package com.omnia.salusbackend.service;
 
-import com.example.salusbackend.entity.UserEntity;
-import com.example.salusbackend.repository.UserRepository;
+import com.omnia.salusbackend.ecxeptions.NotFoundException;
+import com.omnia.salusbackend.entity.UserEntity;
+import com.omnia.salusbackend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
@@ -29,5 +24,9 @@ public class UserService implements UserDetailsService {
             throw new UsernameNotFoundException("Invalid username or password.");
         }
         return user;
+    }
+
+    public UserEntity getUserById(Long id) {
+        return userRepo.findById(id).orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 }

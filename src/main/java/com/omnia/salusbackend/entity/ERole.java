@@ -1,4 +1,4 @@
-package com.example.salusbackend.entity;
+package com.omnia.salusbackend.entity;
 
 public enum ERole {
     WORKER,

@@ -1,6 +1,6 @@
-package com.example.salusbackend.repository;
+package com.omnia.salusbackend.repository;
 
-import com.example.salusbackend.entity.UserEntity;
+import com.omnia.salusbackend.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<UserEntity, Long> {

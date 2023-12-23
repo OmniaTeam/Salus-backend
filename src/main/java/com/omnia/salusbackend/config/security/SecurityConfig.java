@@ -1,6 +1,7 @@
-package com.example.salusbackend.config.security;
+package com.omnia.salusbackend.config.security;
 
-import com.example.salusbackend.entity.ERole;
+import com.omnia.salusbackend.entity.ERole;
+import com.omnia.salusbackend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +14,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import com.example.salusbackend.Service.UserService;
+
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -45,7 +46,8 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth.requestMatchers("/user").hasAuthority(ERole.WORKER.name())
-                        .anyRequest().authenticated())
+                        .requestMatchers("/health").permitAll()
+                        .anyRequest().permitAll())
                 .oauth2Login(auth -> auth.successHandler(successHandler));
 
         return http.build();

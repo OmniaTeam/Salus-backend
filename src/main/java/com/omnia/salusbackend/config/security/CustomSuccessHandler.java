@@ -1,21 +1,18 @@
-package com.example.salusbackend.config.security;
+package com.omnia.salusbackend.config.security;
 
 import java.io.IOException;
 
 
-import com.example.salusbackend.Service.UserService;
-import com.example.salusbackend.entity.ERole;
-import com.example.salusbackend.entity.UserEntity;
-import com.example.salusbackend.repository.UserRepository;
+import com.omnia.salusbackend.service.UserService;
+import com.omnia.salusbackend.entity.ERole;
+import com.omnia.salusbackend.entity.UserEntity;
+import com.omnia.salusbackend.repository.UserRepository;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
