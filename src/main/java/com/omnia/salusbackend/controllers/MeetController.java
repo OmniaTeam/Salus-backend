@@ -15,8 +15,8 @@ public class MeetController {
     final private MeetService meetService;
     final private WorkerMeetService workerMeetService;
 
-    @GetMapping("/{meetId}")
-    public ResponseEntity<?> getWithID(Long meetId){
+    @GetMapping("/{meetId}/")//TODO FIX качает файл
+    public ResponseEntity<?> getWithID(@PathVariable Long meetId){
         return ResponseEntity.ok().body(meetService.getWithId(meetId));
     }
 
