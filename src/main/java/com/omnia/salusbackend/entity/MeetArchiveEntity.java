@@ -16,7 +16,7 @@ public class MeetArchiveEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Long meetid;
+    private Long meetId;
     private String conType;
     private String conLink;
 

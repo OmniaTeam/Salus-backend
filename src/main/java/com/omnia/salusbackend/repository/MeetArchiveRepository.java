@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface MeetArchineRepository extends JpaRepository<MeetArchiveEntity, Long> {
+public interface MeetArchiveRepository extends JpaRepository<MeetArchiveEntity, Long> {
 
-    Optional<MeetArchiveEntity> findByMeetid(Long meetId);
+    Optional<MeetArchiveEntity> findByMeetId(Long meetId);
 }

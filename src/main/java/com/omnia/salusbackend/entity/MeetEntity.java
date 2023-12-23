@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,12 +17,13 @@ public class MeetEntity {
     private Long id;
     private String name;
     private String description;
-    private LocalDate date;
     private Long speakerId;
+    private Long subjectId;
+    private LocalDateTime date;
     @Enumerated
     private EMeetType type;
-    private String connect_type;
-    private String connect_link;
+    private String connectType;
+    private String connectLink;
 
 
     //TODO: снести ебало

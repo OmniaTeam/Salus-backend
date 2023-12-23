@@ -2,7 +2,9 @@ package com.omnia.salusbackend.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.omnia.salusbackend.ecxeptions.NotFoundException;
+import com.omnia.salusbackend.entity.EMeetType;
 import com.omnia.salusbackend.entity.MeetEntity;
+import com.omnia.salusbackend.entity.PlanEntity;
 import com.omnia.salusbackend.repository.MeetRepository;
 import com.omnia.salusbackend.utils.JpaUtils;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +15,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLOutput;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -21,7 +28,7 @@ import java.util.Optional;
 @Slf4j
 public class MeetService {
     private final MeetRepository meetRepository;
-
+    private final PlanService planService;
     public MeetEntity getWithId(Long meetId) {
         return meetRepository.findById(meetId).orElse(null);
     }
@@ -41,5 +48,17 @@ public class MeetService {
 
     public void update(Map<String, Object> data) {
         JpaUtils.abstractUpdate(data, meetRepository);
+    }
+
+    public List<MeetEntity> getMeetsMeetsForSpeakerByDate(Long speakerId, LocalDate date) {
+        LocalDateTime startOfDay = date.atStartOfDay();
+        LocalDateTime endOfDay = date.atTime(LocalTime.MAX);
+        return meetRepository.findAllByTypeAndDateBetweenAndSpeakerId(EMeetType.MEETUP, startOfDay, endOfDay , speakerId);
+    }
+
+    public List<MeetEntity> getMeetsLectureForSpeakerByDate(Long speakerId, LocalDate date) {
+        LocalDateTime startOfDay = date.atStartOfDay();
+        LocalDateTime endOfDay = date.atTime(LocalTime.MAX);
+        return meetRepository.findAllByTypeAndDateBetweenAndSpeakerId(EMeetType.LECTURE, startOfDay, endOfDay , speakerId);
     }
 }
