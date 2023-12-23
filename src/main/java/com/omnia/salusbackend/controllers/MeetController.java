@@ -6,7 +6,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.lang.model.type.UnionType;
 import java.time.LocalDateTime;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/meet")
@@ -26,6 +28,10 @@ public class MeetController {
     }
 
 
-
+    @PostMapping("/update")
+    public ResponseEntity<?> update(@RequestBody Map<String, Object> data){
+        meetService.update(data);
+        return ResponseEntity.ok().build();
+    }
 
 }
