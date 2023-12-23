@@ -15,7 +15,7 @@ public class TriggerService {
 
     final private CSVComponent csvComponent;
     final private MetricsService metricsService;
-    final private EMeetType eMeetType;
+
 
     public void update(String file_path) throws IOException {
         var list = csvComponent.parseCsv(file_path);
