@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.lang.model.type.UnionType;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
@@ -37,7 +38,7 @@ public class MeetController {
         return ResponseEntity.ok().build();
     }
     @GetMapping("/lecture/all")
-    public ResponseEntity<List<MeetDTO>> getallLecturewithdate(@RequestParam ("date") LocalDateTime date){
+    public ResponseEntity<List<MeetDTO>> getallLecturewithdate(@RequestParam ("date") LocalDate date){
         return ResponseEntity.ok().body(meetService.getwithtypeanddate(date, EMeetType.LECTURE));
     }
 
