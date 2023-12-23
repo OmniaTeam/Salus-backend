@@ -45,7 +45,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(auth -> auth.requestMatchers("/user").hasAuthority(ERole.WORKER.name())
+                .authorizeHttpRequests(auth -> auth.requestMatchers("/user").authenticated()
                         .requestMatchers("/health").permitAll()
                         .anyRequest().permitAll())
                 .oauth2Login(auth -> auth.successHandler(successHandler));
