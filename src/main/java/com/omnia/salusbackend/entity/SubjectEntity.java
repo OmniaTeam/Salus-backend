@@ -14,6 +14,7 @@ public class SubjectEntity {
     private Long id;
     private String name;
     private String description;
+    private Long metricsTypeId;
 
     //
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "subject")

@@ -10,4 +10,6 @@ import java.util.Optional;
 @Repository
 public interface MetricsRepository extends JpaRepository<MetricsEntity, Long> {
     Optional<List<MetricsEntity>> findAllByWorkerId(Long workerId);
+
+    Optional<MetricsEntity> findFirstByMetricsTypeIdAndWorkerIdOrderByWorkerIdDesc(Long workerId, Long metricsTypeId);
 }

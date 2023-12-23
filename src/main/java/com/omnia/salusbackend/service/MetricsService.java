@@ -5,9 +5,7 @@ import com.omnia.salusbackend.ecxeptions.NotFoundException;
 import com.omnia.salusbackend.entity.MetricsEntity;
 import com.omnia.salusbackend.entity.MetricsTypeEntity;
 import com.omnia.salusbackend.repository.MetricsRepository;
-import com.omnia.salusbackend.repository.MetricsTypeRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,4 +30,7 @@ public class MetricsService {
         metricsRepository.save(new MetricsEntity(value, workerId, type));
     }
 
+    public MetricsEntity getLastWithType(Long workerId, Long typeId){
+        return metricsRepository.findFirstByMetricsTypeIdAndWorkerIdOrderByWorkerIdDesc(workerId,typeId).orElse(null);
+    }
 }
