@@ -17,6 +17,7 @@ public class PlanEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Long meetId;
+    private Long speakerId;
     private LocalDateTime time;
     private int range;
 }
