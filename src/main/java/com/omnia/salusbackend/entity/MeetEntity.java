@@ -17,6 +17,7 @@ public class MeetEntity {
     private String name;
     private String description;
     private LocalDate date;
+    private Long speakerId;
     @Enumerated
     private EMeetType type;
     private String connect_type;
