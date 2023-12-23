@@ -19,7 +19,7 @@ public class SpeakerController {
 
     @GetMapping("/{speakerId}/allSubject")
     public ResponseEntity<?> getAllSpeaker(@PathVariable Long speakerId){
-        return ResponseEntity.ok().body(subjectSpeakerService.getAllwithSubjectId(speakerId));
+        return ResponseEntity.ok().body(subjectSpeakerService.getAllwithSpeakerId(speakerId));
     }
 
     }

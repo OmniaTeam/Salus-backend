@@ -5,6 +5,7 @@ import com.omnia.salusbackend.dto.MetricsDTO;
 import com.omnia.salusbackend.entity.MeetEntity;
 import com.omnia.salusbackend.entity.UserEntity;
 import com.omnia.salusbackend.entity.WorkerEntity;
+import com.omnia.salusbackend.service.WorkerMeetService;
 import com.omnia.salusbackend.service.WorkerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,7 @@ import java.util.List;
 public class WorkerController {
 
     private final WorkerService workerService;
+    private final WorkerMeetService workerMeetService;
 
     @GetMapping
     ResponseEntity<WorkerEntity> getWorker(Authentication authentication){
@@ -29,22 +31,28 @@ public class WorkerController {
         return ResponseEntity.ok(workerService.getWorkerByUser(user));
     }
 
-    @GetMapping("/{worker_id}/metrics")
-    public ResponseEntity<List<MetricsDTO>> getWorkerMetrics(@PathVariable Long worker_id) {
-        WorkerEntity worker = workerService.getWorkerById(worker_id);
-        List<MetricsDTO> collect = worker.getMetrics().stream()
-                .map(x -> (new MetricsDTO(x.getMetricsType().getTypeName(),
-                        x.getValue())))
-                .toList();
-        return ResponseEntity.ok().body(collect);
+    @GetMapping("/{workerId}/allmeet")
+    public ResponseEntity<?> getAll(@PathVariable Long workerId){
+        return ResponseEntity.ok().body(workerMeetService.getAllwithWorkerId(workerId));
     }
 
-    @GetMapping("/{worker_id}/meets")
-    public ResponseEntity<List<?>> getWorkerMeets(@PathVariable Long worker_id) {
-        WorkerEntity worker = workerService.getWorkerById(worker_id);
-        List<MeetEntity> meets = worker.getMeets();
-        List<MeetsDTO> meetsDTOS = meets.stream().map(x -> new MeetsDTO(x.getId(), x.getName(), x.getDescription(), x.getSpeaker().getUser().getFio())).toList();
-        return ResponseEntity.ok().body(meets);
 
-    }
+//    @GetMapping("/{worker_id}/metrics")
+//    public ResponseEntity<List<MetricsDTO>> getWorkerMetrics(@PathVariable Long worker_id) {
+//        WorkerEntity worker = workerService.getWorkerById(worker_id);
+//        List<MetricsDTO> collect = worker.getMetrics().stream()
+//                .map(x -> (new MetricsDTO(x.getMetricsType().getTypeName(),
+//                        x.getValue())))
+//                .toList();
+//        return ResponseEntity.ok().body(collect);
+//    }
+//
+//    @GetMapping("/{worker_id}/meets")
+//    public ResponseEntity<List<?>> getWorkerMeets(@PathVariable Long worker_id) {
+//        WorkerEntity worker = workerService.getWorkerById(worker_id);
+//        List<MeetEntity> meets = worker.getMeets();
+//        List<MeetsDTO> meetsDTOS = meets.stream().map(x -> new MeetsDTO(x.getId(), x.getName(), x.getDescription(), x.getSpeaker().getUser().getFio())).toList();
+//        return ResponseEntity.ok().body(meets);
+//
+//    }
 }
