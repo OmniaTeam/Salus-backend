@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,5 +27,9 @@ public class UserController {
 
         UserEntity user = userService.getUserByEmail(userPrincipal.getEmail());
         return ResponseEntity.ok().body(new UserResponseDTO(user));
+    }
+    @GetMapping("/{userId}")
+    public ResponseEntity<?> getUserwithId(@PathVariable Long userId){
+        return ResponseEntity.ok().body(userService.getUserById(userId));
     }
 }
