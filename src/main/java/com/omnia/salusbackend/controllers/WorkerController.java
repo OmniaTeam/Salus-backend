@@ -23,6 +23,7 @@ public class WorkerController {
     private final WorkerMeetService workerMeetService;
     private final PlanService planService;
     private final SpeakerRepository speakerRepository;
+    private final RelationService relationService;
 
     @GetMapping
     ResponseEntity<WorkerEntity> getWorker(Authentication authentication){
@@ -49,6 +50,11 @@ public class WorkerController {
         planEntity.setRange(signup.getMeetRange());
         planEntity.setSpeakerId(signup.getSpeakerId());
         return ResponseEntity.ok().body(meet);
+    }
+    @GetMapping("/{workerId}/relation")
+    public ResponseEntity<?> getrelation(@PathVariable Long workerId){
+        var realtion = relationService.getRealtion(workerId);
+        return ResponseEntity.ok().body(realtion);
     }
 
 

@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SpeakerRepository extends JpaRepository<SpeakerEntity, Long> {
+    SpeakerEntity findTopBySubjectIdOrderByRatingDesc(Long subjectId);
 }
