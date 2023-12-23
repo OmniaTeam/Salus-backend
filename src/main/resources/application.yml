@@ -16,8 +16,9 @@ spring:
         registration:
           google:
             redirect-uri: https://salus.the-omnia.ru/api/v3/login/oauth2/code/google
-            client-id: 30553405509-girtoafgk1o7l03upa4dnegh1lcfh51r.apps.googleusercontent.com
-            client-secret: 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
+            client-id: 835130620807-0vn2s9499dbaa51ke0mm6raq55ig4rkh.apps.googleusercontent.com
+            client-secret: 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
+
 
 #server:
 #  port: 443
