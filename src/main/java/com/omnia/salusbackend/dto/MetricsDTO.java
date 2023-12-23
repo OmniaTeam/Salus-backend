@@ -8,5 +8,4 @@ import lombok.Data;
 public class MetricsDTO {
     String name;
     Integer value;
-
 }

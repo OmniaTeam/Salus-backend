@@ -21,10 +21,12 @@ public class CommentEntity {
     private Long meetArcId;
     private String text;
     private LocalDateTime time;
+    private Long userId;
 
-    public CommentEntity(Long meetArcId, String text) {
+    public CommentEntity(Long meetArcId, String text, Long userId) {
         this.meetArcId = meetArcId;
         this.text = text;
         this.time = LocalDateTime.now();
+        this.userId = userId;
     }
 }

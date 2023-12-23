@@ -21,10 +21,12 @@ public class QuestionEntity {
     private Long meetId;
     private String text;
     private LocalDateTime time;
+    private Long userId;
 
-    public QuestionEntity(Long meetId, String text) {
+    public QuestionEntity(Long meetId, String text, Long userId) {
         this.meetId = meetId;
         this.text = text;
         this.time = LocalDateTime.now();
+        this.userId = userId;
     }
 }

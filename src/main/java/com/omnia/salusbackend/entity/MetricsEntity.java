@@ -12,6 +12,8 @@ public class MetricsEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer value;
+    private Long workerId;
+    private Long metricsTypeId;
 
     //TODO:снести ебало
 

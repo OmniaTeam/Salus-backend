@@ -47,8 +47,10 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth.requestMatchers("/user").authenticated()
                         .requestMatchers("/health").permitAll()
+                        .requestMatchers("/logout").permitAll()
                         .anyRequest().permitAll())
-                .oauth2Login(auth -> auth.successHandler(successHandler));
+                .oauth2Login(auth -> auth.successHandler(successHandler))
+                .logout(log -> {});
 
         return http.build();
 
