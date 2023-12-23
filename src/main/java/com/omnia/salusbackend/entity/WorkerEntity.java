@@ -17,18 +17,18 @@ public class WorkerEntity {
     private String specialization;
 
     //TODO: снести ебало
-
-    @OneToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private UserEntity user;
-
-    @ManyToMany
-    @JoinTable(name = "worker_meet",
-            joinColumns = @JoinColumn(name = "worker_id"),
-            inverseJoinColumns = @JoinColumn(name = "meet_id"))
-    private List<MeetEntity> meets = new ArrayList<>();
-
-    @OneToMany(mappedBy="worker")
-    private List<MetricsEntity> metrics = new ArrayList<>();
+//
+//    @OneToOne
+//    @JoinColumn(name = "user_id", nullable = false)
+//    private UserEntity user;
+//
+//    @ManyToMany
+//    @JoinTable(name = "worker_meet",
+//            joinColumns = @JoinColumn(name = "worker_id"),
+//            inverseJoinColumns = @JoinColumn(name = "meet_id"))
+//    private List<MeetEntity> meets = new ArrayList<>();
+//
+//    @OneToMany(mappedBy="worker")
+//    private List<MetricsEntity> metrics = new ArrayList<>();
 
 }

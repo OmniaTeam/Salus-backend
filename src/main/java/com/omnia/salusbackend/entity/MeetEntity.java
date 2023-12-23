@@ -22,18 +22,19 @@ public class MeetEntity {
     private String connect_type;
     private String connect_link;
 
+
     //TODO: снести ебало
-    @ManyToOne
-    @JoinColumn(name = "subject_id", nullable = false)
-    @JsonIgnore
-    private SubjectEntity subject;
-
-    @ManyToOne
-    @JoinColumn(name = "speaker_id", nullable = false)
-    @JsonIgnore
-    private SpeakerEntity speaker;
-
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "meets")
-    @JsonIgnore
-    private List<WorkerEntity> workers = new ArrayList<>();
+//    @ManyToOne
+//    @JoinColumn(name = "subject_id", nullable = false)
+//    @JsonIgnore
+//    private SubjectEntity subject;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "speaker_id", nullable = false)
+//    @JsonIgnore
+//    private SpeakerEntity speaker;
+//
+//    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "meets")
+//    @JsonIgnore
+//    private List<WorkerEntity> workers = new ArrayList<>();
 }

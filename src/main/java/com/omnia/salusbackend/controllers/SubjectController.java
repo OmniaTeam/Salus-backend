@@ -14,8 +14,10 @@ public class SubjectController {
 
     private final SubjectRepository subjectRepository;
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<?> getSubjects() {
         return ResponseEntity.ok().body(subjectRepository.findAll());
     }
+
+
 }

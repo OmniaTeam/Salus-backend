@@ -18,6 +18,7 @@ public class SpeakerEntity {
     private LocalTime startTime;
     private LocalTime endTime;
 
+
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
