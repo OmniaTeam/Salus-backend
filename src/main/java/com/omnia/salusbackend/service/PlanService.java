@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.chrono.ChronoLocalDateTime;
@@ -27,7 +26,7 @@ public class PlanService {
    }
 
 
-   public Boolean checkSpeakerScheduler(Long speakerId, LocalDateTime date, Integer meetRange) {
+   public void checkSpeakerScheduler(Long speakerId, LocalDateTime date, Integer meetRange) {
        SpeakerEntity speaker = speakerRepository.findById(speakerId).orElseThrow();
        if (date.isBefore(ChronoLocalDateTime.from(speaker.getStartTime())) ||
                date.isAfter(ChronoLocalDateTime.from(speaker.getEndTime()))
@@ -37,11 +36,10 @@ public class PlanService {
        List<PlanEntity> plans = planRepository.findBySpeakerIdAndTimeBetween(speakerId, startOfDay, endOfDay);
        for (var plan :
                plans) {
-           if (date.isAfter(plan.getTime()) && date.isBefore(plan.getTime().plusMinutes(meetRange))
+           if (date.isAfter(plan.getTime()) && date.plusMinutes(meetRange).isBefore(plan.getTime().plusMinutes(plan.getRange()))
            ) throw new NotFoundException("");
 
        }
-       return true;
-}
+   }
 
 }

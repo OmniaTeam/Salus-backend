@@ -1,5 +1,6 @@
 package com.omnia.salusbackend.controllers;
 
+import com.omnia.salusbackend.entity.SubjectEntity;
 import com.omnia.salusbackend.repository.SubjectRepository;
 import com.omnia.salusbackend.service.SubjectSpeakerService;
 import lombok.RequiredArgsConstructor;
@@ -25,5 +26,10 @@ public class SubjectController {
     @GetMapping("/{subjectId}/allSpeaker")
     public ResponseEntity<?> getAllSpeaker(@PathVariable Long subjectId){
         return ResponseEntity.ok().body(subjectSpeakerService.getAllwithSubjectId(subjectId));
+    }
+
+    @GetMapping("/{subjectId}")
+    public ResponseEntity<SubjectEntity> getSubject(@PathVariable Long subjectId){
+        return ResponseEntity.ok().body(subjectRepository.findById(subjectId).orElseThrow());
     }
 }

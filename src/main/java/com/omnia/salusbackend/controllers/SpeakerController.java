@@ -1,6 +1,7 @@
 package com.omnia.salusbackend.controllers;
 
 import com.omnia.salusbackend.entity.MeetEntity;
+import com.omnia.salusbackend.entity.SpeakerEntity;
 import com.omnia.salusbackend.repository.SpeakerRepository;
 import com.omnia.salusbackend.service.MeetService;
 import com.omnia.salusbackend.service.SubjectSpeakerService;
@@ -23,6 +24,10 @@ public class SpeakerController {
     final private SubjectSpeakerService subjectSpeakerService;
     final private MeetService meetService;
 
+    @GetMapping("/{speakerId}")
+    public ResponseEntity<SpeakerEntity> getSpeaker(@PathVariable Long speakerId){
+        return ResponseEntity.ok().body(speakerRepository.findById(speakerId).orElseThrow());
+    }
     @GetMapping("/{speakerId}/allSubject")
     public ResponseEntity<?> getAllSpeaker(@PathVariable Long speakerId){
         return ResponseEntity.ok().body(subjectSpeakerService.getAllwithSpeakerId(speakerId));
