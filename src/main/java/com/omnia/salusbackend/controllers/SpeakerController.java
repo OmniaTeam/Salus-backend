@@ -1,5 +1,6 @@
 package com.omnia.salusbackend.controllers;
 
+import com.omnia.salusbackend.dto.MeetDTO;
 import com.omnia.salusbackend.entity.MeetEntity;
 import com.omnia.salusbackend.entity.SpeakerEntity;
 import com.omnia.salusbackend.repository.SpeakerRepository;
@@ -34,12 +35,12 @@ public class SpeakerController {
     }
 
     @GetMapping("/{speakerId}/meets/{date}")
-    public ResponseEntity<List<MeetEntity>> getSpeakerMeets(@PathVariable Long speakerId, @PathVariable LocalDate date){
+    public ResponseEntity<List<MeetDTO>> getSpeakerMeets(@PathVariable Long speakerId, @PathVariable LocalDate date){
         return ResponseEntity.ok().body(meetService.getMeetsMeetsForSpeakerByDate(speakerId, date));
     }
 
     @GetMapping("/{speakerId}/lecture/{date}")
-    public ResponseEntity<List<MeetEntity>> getSpeakerLecture(@PathVariable Long speakerId, @PathVariable LocalDate date){
+    public ResponseEntity<List<MeetDTO>> getSpeakerLecture(@PathVariable Long speakerId, @PathVariable LocalDate date){
         return ResponseEntity.ok().body(meetService.getMeetsLectureForSpeakerByDate(speakerId, date));
     }
 
