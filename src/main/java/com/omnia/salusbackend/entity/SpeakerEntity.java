@@ -17,6 +17,7 @@ public class SpeakerEntity {
     private String description;
     private LocalTime startTime;
     private LocalTime endTime;
+    private Long userId;
 
 
 //    @OneToOne

@@ -1,6 +1,7 @@
 package com.omnia.salusbackend.service;
 
 import com.omnia.salusbackend.ecxeptions.NotFoundException;
+import com.omnia.salusbackend.entity.ERole;
 import com.omnia.salusbackend.entity.UserEntity;
 import com.omnia.salusbackend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 @Service
@@ -34,5 +37,9 @@ public class UserService implements UserDetailsService {
 
     public UserEntity getUserByEmail(String email) {
         return userRepo.findByEmail(email);
+    }
+
+    public List<UserEntity> getUsersForAdmin(List<ERole> roles) {
+        return userRepo.findByRoleIsNotIn(roles);
     }
 }
