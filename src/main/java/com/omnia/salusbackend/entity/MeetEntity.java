@@ -26,20 +26,4 @@ public class MeetEntity {
     private EMeetType type;
     private String connectType;
     private String connectLink;
-
-
-    //TODO: снести ебало
-//    @ManyToOne
-//    @JoinColumn(name = "subject_id", nullable = false)
-//    @JsonIgnore
-//    private SubjectEntity subject;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "speaker_id", nullable = false)
-//    @JsonIgnore
-//    private SpeakerEntity speaker;
-//
-//    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "meets")
-//    @JsonIgnore
-//    private List<WorkerEntity> workers = new ArrayList<>();
 }

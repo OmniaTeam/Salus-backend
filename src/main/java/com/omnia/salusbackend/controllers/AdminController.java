@@ -2,12 +2,11 @@ package com.omnia.salusbackend.controllers;
 
 import com.omnia.salusbackend.entity.ERole;
 import com.omnia.salusbackend.entity.UserEntity;
+import com.omnia.salusbackend.repository.UserRepository;
 import com.omnia.salusbackend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +16,18 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AdminController {
     private final UserService userService;
-    @GetMapping
+    private final UserRepository userRepository;
+    @GetMapping("/users")
     public ResponseEntity<List<UserEntity>> getUsers() {
         var roles = List.of(ERole.ADMIN);
         return ResponseEntity.ok().body(userService.getUsersForAdmin(roles));
+    }
+
+    @GetMapping("/changerole/{user_id}")
+    public ResponseEntity<List<UserEntity>> changeRole(@RequestParam ERole role, @PathVariable Long user_id) {
+        UserEntity user = userService.getUserById(user_id);
+        user.setRole(role);
+        userRepository.save(user);
+        return ResponseEntity.ok().build();
     }
 }
