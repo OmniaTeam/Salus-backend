@@ -29,6 +29,7 @@ public class FileController {
 
             return ResponseEntity.ok(file.getOriginalFilename());
         } catch (Exception ex) {
+            log.error(ex.getMessage());
             return ResponseEntity.status(400).build();
         }
     }
