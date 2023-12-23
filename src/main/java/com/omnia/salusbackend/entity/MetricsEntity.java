@@ -15,6 +15,12 @@ public class MetricsEntity {
     private Long workerId;
     private Long metricsTypeId;
 
+    public MetricsEntity(Integer value, Long workerId, Long metricsTypeId) {
+        this.value = value;
+        this.workerId = workerId;
+        this.metricsTypeId = metricsTypeId;
+    }
+
     //TODO:снести ебало
 
 //    @ManyToOne

@@ -1,11 +1,15 @@
 package com.omnia.salusbackend.service.analyser;
 
-import com.omnia.salusbackend.service.analyser.CSV.CSVAbstract;
+import com.omnia.salusbackend.service.analyser.CSV.CSVDTO;
 
-public class AnalyserExample implements AnalyserInterface{
+public class AnalyserExample{
 
-    @Override
-    public Double calculateRating(CSVAbstract csv) {
-        return 0.1;
+
+    public Integer calculateRatingHealth(CSVDTO data) {
+        return null;
     }
+    public Integer calculateRatingMental(CSVDTO data) {
+        return null;
+    }
+
 }

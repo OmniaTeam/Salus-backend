@@ -28,4 +28,8 @@ public class MetricsService {
 
     }
 
+    public void add(Long workerId, Long type, Integer value){
+        metricsRepository.save(new MetricsEntity(value, workerId, type));
+    }
+
 }
