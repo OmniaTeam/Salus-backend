@@ -1,5 +1,6 @@
 package com.omnia.salusbackend.service;
 
+import com.omnia.salusbackend.dto.MeetDTO;
 import com.omnia.salusbackend.entity.*;
 import com.omnia.salusbackend.repository.MetricsTypeRepository;
 import com.omnia.salusbackend.repository.SpeakerRepository;
@@ -47,18 +48,18 @@ public class RelationService {
         }
     }
 
-    public ArrayList<MeetEntity> getRealtion(Long workerId){
+    public ArrayList<MeetDTO> getRealtion(Long workerId){
 
         var list = getLastMetrics(workerId);
         sort(list);
-        var relation = new ArrayList<MeetEntity>();
+        ArrayList<MeetDTO> relation = new ArrayList<>();
         for(var i : list){
             MetricsTypeEntity metrics = metricsTypeRepository.findById(i.getMetricsTypeId()).orElseThrow();
             List<SubjectEntity> subjects = subjectRepository.findAllByMetricsTypeId(metrics.getId());
             for (var sub :
                     subjects) {
                 SpeakerEntity speaker = speakerRepository.findTopBySubjectIdOrderByRatingDesc(sub.getId());
-                List<MeetEntity> meet = meetService.getMeetsLectureForSpeakerByDate(speaker.getId(), LocalDate.now());
+                List<MeetDTO> meet = meetService.getMeetsLectureForSpeakerByDate(speaker.getId(), LocalDate.now());
                 relation.addAll(meet);
             }
         }

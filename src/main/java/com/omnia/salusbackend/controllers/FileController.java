@@ -22,7 +22,7 @@ public class FileController {
     @PostMapping("/upload/")
     public ResponseEntity<String> handleFileUpload(@RequestParam("file") MultipartFile file) {
         try {
-            var path = "var/salus/files";
+            var path = "home/salus/java/files";
             File destFile = new File(path + file.getOriginalFilename());
             file.transferTo(destFile);
             triggerService.update(path + file.getOriginalFilename());
