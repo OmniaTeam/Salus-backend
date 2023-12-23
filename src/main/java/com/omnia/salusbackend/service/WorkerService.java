@@ -5,10 +5,12 @@ import com.omnia.salusbackend.entity.UserEntity;
 import com.omnia.salusbackend.entity.WorkerEntity;
 import com.omnia.salusbackend.repository.WorkerRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class WorkerService {
 
     private final WorkerRepository workerRepository;
