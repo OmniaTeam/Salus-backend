@@ -22,7 +22,7 @@ public class MeetEntity {
     private String connect_type;
     private String connect_link;
 
-
+    //TODO: снести ебало
     @ManyToOne
     @JoinColumn(name = "subject_id", nullable = false)
     @JsonIgnore

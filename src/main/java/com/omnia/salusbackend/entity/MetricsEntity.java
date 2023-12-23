@@ -13,6 +13,8 @@ public class MetricsEntity {
     private Long id;
     private Integer value;
 
+    //TODO:снести ебало
+
     @ManyToOne
     @JoinColumn(name = "worker_id", nullable = false)
     private WorkerEntity worker;

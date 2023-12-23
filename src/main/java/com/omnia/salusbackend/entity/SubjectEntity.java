@@ -15,7 +15,7 @@ public class SubjectEntity {
     private String name;
     private String description;
 
-
+    //TODO: снести ебало
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "subject")
     private List<MeetEntity> meets = new ArrayList<>();
 

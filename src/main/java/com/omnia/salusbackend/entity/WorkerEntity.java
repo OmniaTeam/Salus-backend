@@ -16,6 +16,8 @@ public class WorkerEntity {
     private Long id;
     private String specialization;
 
+    //TODO: снести ебало
+
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;

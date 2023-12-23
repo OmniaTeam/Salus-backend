@@ -14,8 +14,4 @@ public class SpeakerController {
 
     private final SpeakerRepository speakerRepository;
 
-    @GetMapping("/{user_id}")
-    public ResponseEntity<?> getSubjects() {
-        return ResponseEntity.ok().body(speakerRepository.findAll());
     }
-}
