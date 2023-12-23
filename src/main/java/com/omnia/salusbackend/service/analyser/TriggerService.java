@@ -20,7 +20,6 @@ public class TriggerService {
     public void update(String file_path) throws IOException {
         var list = csvComponent.parseCsv(file_path);
         var analyser = new AnalyserExample();
-        //TODO: смена на enam
         for (var i : list){
             var health = analyser.calculateRatingHealth(i);
             var mental = analyser.calculateRatingMental(i);
