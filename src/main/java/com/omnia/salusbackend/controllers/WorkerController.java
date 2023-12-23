@@ -1,7 +1,5 @@
 package com.omnia.salusbackend.controllers;
 
-import com.omnia.salusbackend.dto.MeetsDTO;
-import com.omnia.salusbackend.dto.MetricsDTO;
 import com.omnia.salusbackend.dto.SignMeetDTO;
 import com.omnia.salusbackend.entity.*;
 import com.omnia.salusbackend.repository.SpeakerRepository;
@@ -12,7 +10,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/worker")

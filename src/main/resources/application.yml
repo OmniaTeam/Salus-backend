@@ -1,7 +1,7 @@
 
 spring:
   datasource:
-    url: jdbc:postgresql://185.104.114.79:5432/salus
+    url: jdbc:postgresql://localhost:5432/salus
     username: salus
     password: salus
   jpa:
