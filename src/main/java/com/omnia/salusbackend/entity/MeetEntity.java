@@ -21,8 +21,6 @@ public class MeetEntity {
     private EMeetType type;
     private String connect_type;
     private String connect_link;
-    @Column(name = "subject_id")
-    private Long subject_id;
 
 
     @ManyToOne
