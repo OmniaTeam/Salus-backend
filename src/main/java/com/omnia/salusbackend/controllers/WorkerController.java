@@ -28,7 +28,7 @@ public class WorkerController {
     @GetMapping
     ResponseEntity<WorkerEntity> getWorker(Authentication authentication){
         UserEntity user = ((UserEntity) authentication.getPrincipal());
-        return ResponseEntity.ok(workerService.getWorkerByUser(user));
+        return ResponseEntity.ok(workerService.getWorkerByUser(user.getId()));
     }
 
     @GetMapping("/{workerId}/allmeet")

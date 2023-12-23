@@ -15,6 +15,7 @@ public class WorkerEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String specialization;
+    private Long userId;
 
     //TODO: снести ебало
 //

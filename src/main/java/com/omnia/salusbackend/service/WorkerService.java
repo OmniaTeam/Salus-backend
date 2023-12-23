@@ -15,9 +15,10 @@ public class WorkerService {
 
     private final WorkerRepository workerRepository;
 
-    public WorkerEntity getWorkerByUser(UserEntity user) {
-        return workerRepository.findByUser(user).orElseThrow(() -> new NotFoundException("Worker"));
+    public WorkerEntity getWorkerByUser(Long userId) {
+        return workerRepository.findByUserId(userId).orElseThrow(() -> new NotFoundException("Worker"));
     }
+
 
     public WorkerEntity getWorkerById(Long worker_id) {
         return workerRepository.findById(worker_id).orElseThrow(() -> new NotFoundException(String.format("Worker with id %d", worker_id)));

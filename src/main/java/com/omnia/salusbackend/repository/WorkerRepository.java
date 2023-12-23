@@ -9,5 +9,6 @@ import java.util.Optional;
 
 @Repository
 public interface WorkerRepository extends JpaRepository<WorkerEntity, Long> {
-    Optional<WorkerEntity> findByUser(UserEntity user);
+    //Optional<WorkerEntity> findByUser(UserEntity user);
+    Optional<WorkerEntity> findByUserId(Long userId);
 }
