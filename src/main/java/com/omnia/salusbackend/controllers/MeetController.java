@@ -1,5 +1,6 @@
 package com.omnia.salusbackend.controllers;
 
+import com.omnia.salusbackend.entity.EMeetType;
 import com.omnia.salusbackend.service.MeetService;
 import com.omnia.salusbackend.service.WorkerMeetService;
 import lombok.RequiredArgsConstructor;
@@ -32,6 +33,10 @@ public class MeetController {
     public ResponseEntity<?> update(@RequestBody Map<String, Object> data){
         meetService.update(data);
         return ResponseEntity.ok().build();
+    }
+    @GetMapping("/lecture/all")
+    public ResponseEntity<?> getallLecturewithdate(@RequestParam ("date") LocalDateTime date){
+        return ResponseEntity.ok().body(meetService.getwithtypeanddate(date, EMeetType.LECTURE));
     }
 
 }

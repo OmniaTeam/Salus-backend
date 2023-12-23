@@ -61,4 +61,8 @@ public class MeetService {
         LocalDateTime endOfDay = date.atTime(LocalTime.MAX);
         return meetRepository.findAllByTypeAndDateBetweenAndSpeakerId(EMeetType.LECTURE, startOfDay, endOfDay , speakerId);
     }
+
+    public List<MeetEntity> getwithtypeanddate(LocalDateTime date, EMeetType type){
+        return meetRepository.findAllByTypeAndDateBetween(type, date, date.plusDays(1));
+    }
 }

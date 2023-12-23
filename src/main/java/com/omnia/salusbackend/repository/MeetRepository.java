@@ -12,4 +12,7 @@ import java.util.List;
 @Repository
 public interface MeetRepository extends JpaRepository<MeetEntity, Long> {
     List<MeetEntity> findAllByTypeAndDateBetweenAndSpeakerId(EMeetType type, LocalDateTime date, LocalDateTime date2, Long speakerId);
+
+    List<MeetEntity> findAllByTypeAndDateBetween(EMeetType type, LocalDateTime date, LocalDateTime date2);
+
 }
