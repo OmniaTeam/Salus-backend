@@ -50,7 +50,7 @@ public class SecurityConfig {
                         .requestMatchers("/logout").permitAll()
                         .anyRequest().permitAll())
                 .oauth2Login(auth -> auth.successHandler(successHandler))
-                .logout(log -> {});
+                .logout(log -> log.logoutSuccessUrl("/"));
 
         return http.build();
 
