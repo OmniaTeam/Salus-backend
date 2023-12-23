@@ -29,4 +29,8 @@ public class UserService implements UserDetailsService {
     public UserEntity getUserById(Long id) {
         return userRepo.findById(id).orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
+
+    public UserEntity getUserByEmail(String email) {
+        return userRepo.findByEmail(email);
+    }
 }

@@ -9,13 +9,13 @@ import lombok.Data;
 public class UserResponseDTO {
     Long id;
     String fio;
-    String email;
+    String login;
     String role;
 
     public UserResponseDTO(UserEntity user) {
         this.id = user.getId();
         this.fio = user.getFio();
-        this.email = user.getEmail();
+        this.login = user.getEmail();
         this.role = user.getRole().name();
     }
 }
