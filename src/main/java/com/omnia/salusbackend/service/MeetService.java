@@ -60,8 +60,10 @@ public class MeetService {
         return getListMeetDTO(meets);
     }
 
-    public List<MeetDTO> getwithtypeanddate(LocalDateTime date, EMeetType type){
-        List<MeetEntity> meets = meetRepository.findAllByTypeAndDateBetween(type, date, date.plusDays(1));
+    public List<MeetDTO> getwithtypeanddate(LocalDate date, EMeetType type){
+        LocalDateTime startOfDay = date.atStartOfDay();
+        LocalDateTime endOfDay = date.atTime(LocalTime.MAX);
+        List<MeetEntity> meets = meetRepository.findAllByTypeAndDateBetween(type, startOfDay, endOfDay);
         return getListMeetDTO(meets);
     }
 
