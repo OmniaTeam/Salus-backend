@@ -33,8 +33,8 @@ logging:
     #    console: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"
     file: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"
   level:
-    org.springframework: info
-    root: info
-    com.omnia: info
+    org.springframework: trace
+    root: trace
+    com.omnia: trace
 
 
