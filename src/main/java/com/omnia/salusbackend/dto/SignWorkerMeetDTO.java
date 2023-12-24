@@ -9,10 +9,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class SignWorkerMeetDTO {
 
+    String name;
     LocalDateTime date;
     Long speakerId;
     Integer meetRange;
-    String connectedType;
-    String connectedLink;
-    String description;
 }

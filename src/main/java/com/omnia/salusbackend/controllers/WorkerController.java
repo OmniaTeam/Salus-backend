@@ -2,10 +2,7 @@ package com.omnia.salusbackend.controllers;
 
 import com.omnia.salusbackend.dto.SignWorkerMeetDTO;
 import com.omnia.salusbackend.entity.*;
-import com.omnia.salusbackend.repository.MeetRepository;
-import com.omnia.salusbackend.repository.PlanRepository;
-import com.omnia.salusbackend.repository.SpeakerRepository;
-import com.omnia.salusbackend.repository.SubjectRepository;
+import com.omnia.salusbackend.repository.*;
 import com.omnia.salusbackend.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +27,7 @@ public class WorkerController {
     private final GmailService gmailService;
     private final UserService userService;
     private final SubjectRepository subjectRepository;
+    private final WorkerMeetRepository workerMeetRepository;
 
     @GetMapping
     ResponseEntity<WorkerEntity> getWorker(Authentication authentication){
@@ -46,27 +44,27 @@ public class WorkerController {
     public ResponseEntity<MeetEntity> signup (@RequestBody SignWorkerMeetDTO signup, @PathVariable Long worker_id) {
         planService.checkSpeakerScheduler(signup.getSpeakerId(), signup.getDate(), signup.getMeetRange());
         SpeakerEntity speaker = speakerRepository.findById(signup.getSpeakerId()).orElseThrow();
-        UserEntity user_speaker = userService.getUserById(speaker.getUserId());
+
+
+
         MeetEntity meet = new MeetEntity();
         meet.setSpeakerId(signup.getSpeakerId());
         meet.setSubjectId(speaker.getSubjectId());
+
         meet.setDate(signup.getDate());
         meet.setType(EMeetType.MEETUP);
-        meet.setConnectType(meet.getConnectType());
-        meet.setConnectLink(meet.getConnectLink());
-        meet.setName("Meet Up");
+        meet.setName(signup.getName());
         meetRepository.save(meet);
-        SubjectEntity subject = subjectRepository.findById(meet.getSubjectId()).orElseThrow();
         PlanEntity planEntity = new PlanEntity();
         planEntity.setTime(signup.getDate());
         planEntity.setRange(signup.getMeetRange());
         planEntity.setSpeakerId(signup.getSpeakerId());
         planEntity.setMeetId(meet.getId());
         planRepository.save(planEntity);
-        WorkerEntity worker = workerService.getWorkerById(worker_id);
-        UserEntity user = userService.getUserById(worker.getUserId());
-        String link = "https://www.youtube.com/watch?v=BL8ZKeGCaIg";
-        gmailService.sendSimpleEmail(user.getEmail(), user.getFio(),meet.getDate() ,user_speaker.getFio(), signup.getMeetRange(), subject.getName(), meet.getDescription(), meet.getConnectType(), link);
+        WorkerMeetEntity workerMeetEntity = new WorkerMeetEntity();
+        workerMeetEntity.setWorkerId(worker_id);
+        workerMeetEntity.setMeetId(worker_id);
+        workerMeetRepository.save(workerMeetEntity);
         return ResponseEntity.ok().body(meet);
     }
     @GetMapping("/{workerId}/relation")

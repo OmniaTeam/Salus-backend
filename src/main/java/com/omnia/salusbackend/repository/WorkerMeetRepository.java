@@ -9,7 +9,6 @@ import java.util.List;
 @Repository
 public interface WorkerMeetRepository extends JpaRepository<WorkerMeetEntity, Long> {
 
-
     List<WorkerMeetEntity> findAllByMeetId(Long meetId);
 
     List<WorkerMeetEntity> findAllByWorkerId(Long workerId);
