@@ -32,20 +32,18 @@ public class WorkerController {
     private final SubjectRepository subjectRepository;
     private final WorkerMeetRepository workerMeetRepository;
 
-    @GetMapping
-    ResponseEntity<WorkerEntity> getWorker(){
-        DefaultOidcUser userPrincipal = (DefaultOidcUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        UserEntity user = userService.getUserByEmail(userPrincipal.getEmail());
-        return ResponseEntity.ok(workerService.getWorkerByUser(user.getId()));
+//    @GetMapping
+//    ResponseEntity<WorkerEntity> getWorker(){
+//        DefaultOidcUser userPrincipal = (DefaultOidcUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        UserEntity user = userService.getUserByEmail(userPrincipal.getEmail());
+//        return ResponseEntity.ok(workerService.getWorkerByUser(user.getId()));
+//    }
+    @GetMapping("/{user_id}")
+    public WorkerEntity getWorker(@PathVariable Long user_id) {
+        return workerService.getWorkerByUser(user_id);
     }
 
-    @GetMapping
-    public ResponseEntity<?> getUser() {
-        DefaultOidcUser userPrincipal = (DefaultOidcUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        UserEntity user = userService.getUserByEmail(userPrincipal.getEmail());
-        return ResponseEntity.ok().body(new UserResponseDTO(user));
-    }
 
     @GetMapping("/{workerId}/allmeet")
     public ResponseEntity<List<WorkerMeetEntity>> getAll(@PathVariable Long workerId){

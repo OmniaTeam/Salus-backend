@@ -4,6 +4,7 @@ import com.omnia.salusbackend.dto.MeetDTO;
 import com.omnia.salusbackend.dto.MeetUpdateDTO;
 import com.omnia.salusbackend.entity.*;
 import com.omnia.salusbackend.repository.MeetRepository;
+import com.omnia.salusbackend.repository.PlanRepository;
 import com.omnia.salusbackend.repository.SpeakerRepository;
 import com.omnia.salusbackend.repository.WorkerMeetRepository;
 import com.omnia.salusbackend.utils.JpaUtils;
@@ -30,6 +31,7 @@ public class MeetService {
     private final WorkerMeetRepository workerMeetRepository;
     private final WorkerService workerService;
     private final GmailService gmailService;
+    private final PlanRepository planRepository;
     public MeetEntity getWithId(Long meetId) {
         return meetRepository.findById(meetId).orElse(null);
     }
@@ -58,13 +60,14 @@ public class MeetService {
         if (data.getPlatform() != null)
             meet.setConnectType(data.getPlatform());
 
+        SubjectEntity subject = subjectService.getWithId(meet.getSubjectId());
         List<WorkerMeetEntity> workerMeetEntities = workerMeetRepository.findAllByMeetId(data.getMeet_id());
         for (var workerMeet :
                 workerMeetEntities) {
             WorkerEntity worker = workerService.getWorkerById(workerMeet.getWorkerId());
             UserEntity user = userService.getUserById(worker.getUserId());
             userService.getUserById(worker.getUserId());
-//            gmailService.sendSimpleEmail(user.getEmail(), user.getFio(),meet.getDate() ,user_speaker.getFio(), signup.getMeetRange(), subject.getName(), meet.getDescription(), meet.getConnectType(), meet.getConnectLink());
+//            gmailService.sendSimpleEmail(user.getEmail(), user.getFio(),meet.getDate() ,user_speaker.getFio(), .getMeetRange(), subject.getName(), meet.getDescription(), meet.getConnectType(), meet.getConnectLink());
         }
 
         meetRepository.save(meet);
