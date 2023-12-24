@@ -50,6 +50,7 @@ public class AdminController {
         new_meet.setType(EMeetType.LECTURE);
         meetRepository.save(new_meet);
 
+
         PlanEntity planEntity = new PlanEntity();
         planEntity.setMeetId(new_meet.getId());
         planEntity.setSpeakerId(speaker.getId());
