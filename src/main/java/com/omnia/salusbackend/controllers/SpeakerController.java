@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/speaker")
@@ -57,8 +58,19 @@ public class SpeakerController {
     }
 
     @GetMapping("/{speakerId}")
-    public ResponseEntity<SpeakerEntity> getSpeaker(@PathVariable Long speakerId){
-        return ResponseEntity.ok().body(speakerRepository.findById(speakerId).orElseThrow());
+    public ResponseEntity<SpeakerDTO> getSpeaker(@PathVariable Long speakerId){
+        SpeakerEntity speaker = speakerRepository.findById(speakerId).orElseThrow();
+        UserEntity user = userService.getUserById(speaker.getUserId());
+        SubjectEntity subject = subjectService.getWithId(speaker.getSubjectId());
+        SpeakerDTO speakerDTO = new SpeakerDTO(
+                speaker.getId(),
+                user.getFio(),
+                subject.getName(),
+                speaker.getRating(),
+                speaker.getDescription(),
+                user.getId()
+        );
+        return ResponseEntity.ok().body(speakerDTO);
     }
     @GetMapping("/{speakerId}/allSubject")
     public ResponseEntity<?> getAllSpeaker(@PathVariable Long speakerId){
