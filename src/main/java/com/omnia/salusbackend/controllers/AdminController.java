@@ -1,8 +1,10 @@
 package com.omnia.salusbackend.controllers;
 
+import com.omnia.salusbackend.dto.SighAdminMeetDTO;
 import com.omnia.salusbackend.dto.SignWorkerMeetDTO;
 import com.omnia.salusbackend.entity.*;
 import com.omnia.salusbackend.repository.PlanRepository;
+import com.omnia.salusbackend.repository.SpeakerRepository;
 import com.omnia.salusbackend.repository.UserRepository;
 import com.omnia.salusbackend.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AdminController {
     private final UserService userService;
+    private final SpeakerRepository speakerRepository;
     private final UserRepository userRepository;
     private final PlanRepository planRepository;
     @GetMapping("/users")
@@ -32,20 +35,19 @@ public class AdminController {
         return ResponseEntity.ok().build();
     }
 
-//    @PostMapping("/meet/create")
-//    public ResponseEntity<?> createMeet(@RequestBody SignWorkerMeetDTO meet) {
-//
-//        planService.checkSpeakerScheduler(signup.getSpeakerId(), signup.getDate(), signup.getMeetRange());
-//        SpeakerEntity speaker = speakerRepository.findById(signup.getSpeakerId()).orElseThrow();
-//        MeetEntity meet = new MeetEntity();
-//        meet.setSpeaker_name(signup.getSpeakerId());
-//        meet.setSubject(speaker.getSubjectId());
-//        meet.setDate(signup.getDate());
-//        meet.setType(EMeetType.MEETUP);
-//        PlanEntity planEntity = new PlanEntity();
-//        planEntity.setTime(signup.getDate());
-//        planEntity.setRange(signup.getMeetRange());
-//        planEntity.setSpeakerId(signup.getSpeakerId());
-//        return ResponseEntity.ok().body(meet);
-//    }
+    @PostMapping("/meet/create")
+    public ResponseEntity<?> createMeet(@RequestBody SighAdminMeetDTO meet) {
+        UserEntity user = userRepository.findByFio(meet.getSpeaker_name()).orElseThrow();
+
+        SpeakerEntity speaker = speakerRepository.findByUserId(user.getId()).orElseThrow();
+        MeetEntity new_meet = new MeetEntity();
+        new_meet.setSpeakerId(speaker.getId());
+        new_meet.setSubjectId(meet.getSubject());
+        new_meet.setDate(meet.getDate());
+
+        new_meet.setType(EMeetType.LECTURE);
+        PlanEntity planEntity = new PlanEntity();
+        planEntity.setTime(meet.getDate());
+        return ResponseEntity.ok().build();
+    }
 }

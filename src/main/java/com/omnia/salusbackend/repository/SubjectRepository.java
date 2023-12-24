@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface SubjectRepository extends JpaRepository<SubjectEntity, Long> {
     List<SubjectEntity> findAllByMetricsTypeId(Long metricsTypeId);
+
 }

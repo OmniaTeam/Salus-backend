@@ -43,4 +43,10 @@ public class MeetController {
         return ResponseEntity.ok().body(meetService.getwithtypeanddate(date, EMeetType.LECTURE));
     }
 
+    @GetMapping("/{meet_id}/delete")
+    public ResponseEntity<?> deleteMeet(@PathVariable Long meet_id){
+        meetService.deleteWithid(meet_id);
+        return ResponseEntity.ok().build();
+    }
+
 }
