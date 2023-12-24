@@ -45,10 +45,14 @@ public class MeetService {
 
     public void update(MeetUpdateDTO data) {
         MeetEntity meet = meetRepository.findById(data.getMeet_id()).orElseThrow();
-        meet.setDate(data.getDate());
-        meet.setConnectLink(data.getLink());
-        meet.setName(data.getMeet_name());
-        meet.setConnectType(data.getPlatform());
+        if (data.getDate() != null)
+            meet.setDate(data.getDate());
+        if (data.getLink() != null)
+            meet.setConnectLink(data.getLink());
+        if (data.getMeet_id() != null)
+            meet.setName(data.getMeet_name());
+        if (data.getPlatform() != null)
+            meet.setConnectType(data.getPlatform());
 
         meetRepository.save(meet);
     }
