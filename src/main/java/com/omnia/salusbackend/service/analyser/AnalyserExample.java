@@ -1,11 +1,14 @@
 package com.omnia.salusbackend.service.analyser;
 
 import com.omnia.salusbackend.service.analyser.CSV.CSVDTO;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class AnalyserExample{
 
 
     public Integer calculateRatingHealth(CSVDTO data) {
+        System.out.println(data);
          Integer recycling = data.getRecycling();
          Integer sportsevents = data.getSportsevents();
          Integer hourssportsevents = data.getHourssportsevents();
@@ -27,6 +30,7 @@ public class AnalyserExample{
         //return (numberofhoursworked + hourssportsevents - recycling - medicalhours)/(workinghours -medicalhours);
     }
     public Integer calculateRatingMental(CSVDTO data) {
+        System.out.println(data);
         Integer fairleadership = data.getFairleadership();
         Integer satisfiedposition = data.getSatisfiedposition();
         Integer satisfiedteam = data.getSatisfiedteam();
