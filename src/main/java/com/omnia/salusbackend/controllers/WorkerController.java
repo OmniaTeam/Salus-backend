@@ -2,12 +2,13 @@ package com.omnia.salusbackend.controllers;
 
 import com.omnia.salusbackend.dto.SignWorkerMeetDTO;
 import com.omnia.salusbackend.entity.*;
+import com.omnia.salusbackend.repository.MeetRepository;
+import com.omnia.salusbackend.repository.PlanRepository;
 import com.omnia.salusbackend.repository.SpeakerRepository;
 import com.omnia.salusbackend.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,11 +22,13 @@ public class WorkerController {
     private final WorkerMeetService workerMeetService;
     private final PlanService planService;
     private final SpeakerRepository speakerRepository;
+    private final PlanRepository planRepository;
+    private final MeetRepository meetRepository;
     private final RelationService relationService;
 
     @GetMapping
-    ResponseEntity<WorkerEntity> getWorker(){
-        UserEntity user = ((UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+    ResponseEntity<WorkerEntity> getWorker(Authentication authentication){
+        UserEntity user = ((UserEntity) authentication.getPrincipal());
         return ResponseEntity.ok(workerService.getWorkerByUser(user.getId()));
     }
 
@@ -43,10 +46,12 @@ public class WorkerController {
         meet.setSubjectId(speaker.getSubjectId());
         meet.setDate(signup.getDate());
         meet.setType(EMeetType.MEETUP);
+        meetRepository.save(meet);
         PlanEntity planEntity = new PlanEntity();
         planEntity.setTime(signup.getDate());
         planEntity.setRange(signup.getMeetRange());
         planEntity.setSpeakerId(signup.getSpeakerId());
+        planRepository.save(planEntity);
         return ResponseEntity.ok().body(meet);
     }
     @GetMapping("/{workerId}/relation")
