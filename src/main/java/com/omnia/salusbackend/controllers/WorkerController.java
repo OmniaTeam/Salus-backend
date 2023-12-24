@@ -7,6 +7,7 @@ import com.omnia.salusbackend.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,8 +31,8 @@ public class WorkerController {
     private final WorkerMeetRepository workerMeetRepository;
 
     @GetMapping
-    ResponseEntity<WorkerEntity> getWorker(Authentication authentication){
-        UserEntity user = ((UserEntity) authentication.getPrincipal());
+    ResponseEntity<WorkerEntity> getWorker(){
+        UserEntity user = ((UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         return ResponseEntity.ok(workerService.getWorkerByUser(user.getId()));
     }
 
