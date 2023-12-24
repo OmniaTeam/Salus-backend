@@ -3,6 +3,7 @@ package com.omnia.salusbackend.controllers;
 import com.omnia.salusbackend.dto.SighAdminMeetDTO;
 import com.omnia.salusbackend.dto.SignWorkerMeetDTO;
 import com.omnia.salusbackend.entity.*;
+import com.omnia.salusbackend.repository.MeetRepository;
 import com.omnia.salusbackend.repository.PlanRepository;
 import com.omnia.salusbackend.repository.SpeakerRepository;
 import com.omnia.salusbackend.repository.UserRepository;
@@ -20,6 +21,7 @@ public class AdminController {
     private final UserService userService;
     private final SpeakerRepository speakerRepository;
     private final UserRepository userRepository;
+    private final MeetRepository meetRepository;
     private final PlanRepository planRepository;
     @GetMapping("/users")
     public ResponseEntity<List<UserEntity>> getUsers() {
@@ -46,8 +48,14 @@ public class AdminController {
         new_meet.setDate(meet.getDate());
 
         new_meet.setType(EMeetType.LECTURE);
+        meetRepository.save(new_meet);
+
         PlanEntity planEntity = new PlanEntity();
+        planEntity.setMeetId(new_meet.getId());
+        planEntity.setSpeakerId(speaker.getId());
+        planEntity.setRange(60);
         planEntity.setTime(meet.getDate());
+        planRepository.save(planEntity);
         return ResponseEntity.ok().build();
     }
 }
