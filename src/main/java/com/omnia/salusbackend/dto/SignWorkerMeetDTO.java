@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
-public class SignMeetDTO {
+public class SignWorkerMeetDTO {
 
     LocalDateTime date;
     Long speakerId;

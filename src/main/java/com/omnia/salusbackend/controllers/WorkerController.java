@@ -1,6 +1,6 @@
 package com.omnia.salusbackend.controllers;
 
-import com.omnia.salusbackend.dto.SignMeetDTO;
+import com.omnia.salusbackend.dto.SignWorkerMeetDTO;
 import com.omnia.salusbackend.entity.*;
 import com.omnia.salusbackend.repository.SpeakerRepository;
 import com.omnia.salusbackend.service.*;
@@ -34,7 +34,7 @@ public class WorkerController {
     }
 
     @GetMapping("/{worker_id}/signup")
-    public ResponseEntity<MeetEntity> signup (@RequestBody SignMeetDTO signup, @PathVariable Long worker_id) {
+    public ResponseEntity<MeetEntity> signup (@RequestBody SignWorkerMeetDTO signup, @PathVariable Long worker_id) {
         planService.checkSpeakerScheduler(signup.getSpeakerId(), signup.getDate(), signup.getMeetRange());
         SpeakerEntity speaker = speakerRepository.findById(signup.getSpeakerId()).orElseThrow();
         MeetEntity meet = new MeetEntity();

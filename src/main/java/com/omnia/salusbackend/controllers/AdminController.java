@@ -1,5 +1,6 @@
 package com.omnia.salusbackend.controllers;
 
+import com.omnia.salusbackend.dto.SignWorkerMeetDTO;
 import com.omnia.salusbackend.entity.ERole;
 import com.omnia.salusbackend.entity.UserEntity;
 import com.omnia.salusbackend.repository.UserRepository;
@@ -8,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -30,4 +30,9 @@ public class AdminController {
         userRepository.save(user);
         return ResponseEntity.ok().build();
     }
+
+//    @PostMapping("/meet/create")
+//    public ResponseEntity<List<UserEntity>> createMeet(@RequestBody SignWorkerMeetDTO meet) {
+//
+//    }
 }

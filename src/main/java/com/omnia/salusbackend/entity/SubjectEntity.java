@@ -15,16 +15,4 @@ public class SubjectEntity {
     private String name;
     private String description;
     private Long metricsTypeId;
-
-    //
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "subject")
-//    private List<MeetEntity> meets = new ArrayList<>();
-//
-//    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "subjects")
-//    private List<SpeakerEntity> speakers = new ArrayList<>();
-//
-//    @ManyToOne
-//    @JoinColumn(name = "metrics_type_id", nullable = false)
-//    private MetricsTypeEntity metricsType;
-
 }
