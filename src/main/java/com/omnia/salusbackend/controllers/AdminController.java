@@ -43,9 +43,12 @@ public class AdminController {
 
         SpeakerEntity speaker = speakerRepository.findByUserId(user.getId()).orElseThrow();
         MeetEntity new_meet = new MeetEntity();
+        new_meet.setName(meet.getMeet_name());
         new_meet.setSpeakerId(speaker.getId());
         new_meet.setSubjectId(meet.getSubject());
         new_meet.setDate(meet.getDate());
+        new_meet.setConnectType(meet.getPlatform());
+        new_meet.setConnectLink(meet.getLink());
 
         new_meet.setType(EMeetType.LECTURE);
         meetRepository.save(new_meet);
