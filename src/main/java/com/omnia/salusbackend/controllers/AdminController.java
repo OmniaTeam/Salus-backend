@@ -29,7 +29,7 @@ public class AdminController {
         return ResponseEntity.ok().body(userService.getUsersForAdmin(roles));
     }
 
-    @GetMapping("/changerole/{user_id}")
+    @PostMapping("/changerole/{user_id}")
     public ResponseEntity<List<UserEntity>> changeRole(@RequestParam ERole role, @PathVariable Long user_id) {
         UserEntity user = userService.getUserById(user_id);
         user.setRole(role);
