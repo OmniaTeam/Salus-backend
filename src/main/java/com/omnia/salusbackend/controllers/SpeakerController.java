@@ -48,6 +48,7 @@ public class SpeakerController {
             speakerDTOS.add(new SpeakerDTO(
                     speaker.getId(),
                     user.getFio(),
+                    user.getEmail(),
                     subject.getName(),
                     speaker.getRating(),
                     speaker.getDescription(),
@@ -65,6 +66,7 @@ public class SpeakerController {
         SpeakerDTO speakerDTO = new SpeakerDTO(
                 speaker.getId(),
                 user.getFio(),
+                user.getEmail(),
                 subject.getName(),
                 speaker.getRating(),
                 speaker.getDescription(),

@@ -10,6 +10,7 @@ import java.time.LocalTime;
 public class SpeakerDTO {
     private Long id;
     private String fio;
+    private String email;
     private String subjectName;
     private Double rating;
     private String description;
