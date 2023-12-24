@@ -64,7 +64,7 @@ public class MeetService {
             WorkerEntity worker = workerService.getWorkerById(workerMeet.getWorkerId());
             UserEntity user = userService.getUserById(worker.getUserId());
             userService.getUserById(worker.getUserId());
-            gmailService.sendSimpleEmail(user.getEmail(), user.getFio(),meet.getDate() ,user_speaker.getFio(), signup.getMeetRange(), subject.getName(), meet.getDescription(), meet.getConnectType(), meet.getConnectLink());
+//            gmailService.sendSimpleEmail(user.getEmail(), user.getFio(),meet.getDate() ,user_speaker.getFio(), signup.getMeetRange(), subject.getName(), meet.getDescription(), meet.getConnectType(), meet.getConnectLink());
         }
 
         meetRepository.save(meet);
