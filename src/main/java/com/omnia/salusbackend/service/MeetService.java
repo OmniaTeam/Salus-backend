@@ -82,7 +82,10 @@ public class MeetService {
         SpeakerEntity speaker = speakerRepository.findById(meet.getSpeakerId()).orElseThrow();
         UserEntity user = userService.getUserById(speaker.getUserId());
         SubjectEntity subject = subjectService.getWithId(meet.getSubjectId());
-        return new MeetDTO(meet.getId(), meet.getName(), meet.getDescription(), user.getFio(), subject.getName(), meet.getDate(), meet.getConnectType(), meet.getConnectLink());
+        if (subject != null) {
+            return new MeetDTO(meet.getId(), meet.getName(), meet.getDescription(), user.getFio(), subject.getName(), meet.getDate(), meet.getConnectType(), meet.getConnectLink());
+        }
+        return null;
     }
 
     public List<MeetDTO> getListMeetDTO(List<MeetEntity> meets) {
