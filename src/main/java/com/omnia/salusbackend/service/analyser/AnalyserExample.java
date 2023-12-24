@@ -10,7 +10,7 @@ public class AnalyserExample{
          Integer sportsevents = data.getSportsevents();
          Integer hourssportsevents = data.getHourssportsevents();
          Integer workinghours = data.getWorkinghours();
-         Integer numberofhoursworked =data.getNumberofhoursworked();
+         Integer numberofhoursworked = data.getNumberofhoursworked();
          Integer medicalhours = data.getMedicalhours();
 
         return (numberofhoursworked + hourssportsevents - recycling - medicalhours)/(workinghours -medicalhours);

@@ -18,7 +18,7 @@ public class CSVComponent {
             CsvToBean<CSVDTO> csvToBean = new CsvToBeanBuilder<CSVDTO>(reader)
                     .withType(CSVDTO.class)
                     .withIgnoreLeadingWhiteSpace(true)
-                    .withSeparator(';')
+                    .withSeparator(',')
                     .build();
 
             return csvToBean.parse();
