@@ -62,7 +62,7 @@ public class WorkerController {
         meet.setSubjectId(speaker.getSubjectId());
 
         meet.setDate(signup.getDate());
-        meet.setType(EMeetType.MEETUP);
+        meet.setType(EMeetType.LECTURE);
         meet.setName(signup.getName());
         meetRepository.save(meet);
         PlanEntity planEntity = new PlanEntity();

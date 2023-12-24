@@ -77,9 +77,11 @@ public class MeetService {
     }
 
     public List<MeetDTO> getMeetsMeetsForSpeakerByDate(Long speakerId, LocalDate date) {
+
         LocalDateTime startOfDay = date.atStartOfDay();
         LocalDateTime endOfDay = date.atTime(LocalTime.MAX);
         List<MeetEntity> meets = meetRepository.findAllByTypeAndDateBetweenAndSpeakerId(EMeetType.MEETUP, startOfDay, endOfDay, speakerId);
+        log.info(String.valueOf(meets.size()));
         return getListMeetDTO(meets);
     }
 
@@ -111,6 +113,7 @@ public class MeetService {
         List<MeetDTO> meetDTOS = new ArrayList<>();
         for (var meet :
                 meets) {
+            log.info(meet.getName());
             meetDTOS.add(getMeetDTO(meet));
         }
         return meetDTOS;
