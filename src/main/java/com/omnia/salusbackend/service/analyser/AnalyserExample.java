@@ -13,7 +13,18 @@ public class AnalyserExample{
          Integer numberofhoursworked = data.getNumberofhoursworked();
          Integer medicalhours = data.getMedicalhours();
 
-        return (numberofhoursworked + hourssportsevents - recycling - medicalhours)/(workinghours -medicalhours);
+        if (workinghours - medicalhours == 0) {
+            // Обработка случая деления на ноль
+            // Измените ее в соответствии с требованиями вашей логики
+            // return null; // или выбросьте исключение или присвойте другое значение
+            throw new IllegalArgumentException("Divisor cannot be zero");
+        }
+
+        return (numberofhoursworked + hourssportsevents - recycling - medicalhours) / (workinghours - medicalhours);
+
+
+
+        //return (numberofhoursworked + hourssportsevents - recycling - medicalhours)/(workinghours -medicalhours);
     }
     public Integer calculateRatingMental(CSVDTO data) {
         Integer fairleadership = data.getFairleadership();
