@@ -20,7 +20,7 @@ public class AnalyserExample{
             throw new IllegalArgumentException("Divisor cannot be zero");
         }
 
-        return (numberofhoursworked + hourssportsevents - recycling - medicalhours) / (workinghours - medicalhours);
+        return (numberofhoursworked + hourssportsevents - recycling - medicalhours) / (workinghours - medicalhours)*100;
 
 
 
