@@ -1,6 +1,7 @@
 package com.omnia.salusbackend.controllers;
 
 import com.omnia.salusbackend.dto.SignWorkerMeetDTO;
+import com.omnia.salusbackend.dto.UserResponseDTO;
 import com.omnia.salusbackend.entity.*;
 import com.omnia.salusbackend.repository.*;
 import com.omnia.salusbackend.service.*;
@@ -8,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,8 +34,17 @@ public class WorkerController {
 
     @GetMapping
     ResponseEntity<WorkerEntity> getWorker(){
-        UserEntity user = ((UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        DefaultOidcUser userPrincipal = (DefaultOidcUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserEntity user = userService.getUserByEmail(userPrincipal.getEmail());
         return ResponseEntity.ok(workerService.getWorkerByUser(user.getId()));
+    }
+
+    @GetMapping
+    public ResponseEntity<?> getUser() {
+        DefaultOidcUser userPrincipal = (DefaultOidcUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        UserEntity user = userService.getUserByEmail(userPrincipal.getEmail());
+        return ResponseEntity.ok().body(new UserResponseDTO(user));
     }
 
     @GetMapping("/{workerId}/allmeet")
