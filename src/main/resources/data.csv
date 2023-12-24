@@ -1,4 +1,4 @@
-"workerId","recycling","sportsevents"," hourssportsevents","workinghours","numberof hoursworked","medicalhours","fairleadership","satisfiedposition","satisfiedteam","satisfiedsalary","salarylevel","satisfiedcompany"
+"workerId","recycling","sportsevents","hourssportsevents","workinghours","numberofhoursworked","medicalhours","fairleadership","satisfiedposition","satisfiedteam","satisfiedsalary","salarylevel","satisfiedcompany"
 1,34,8,8,192,202,24,2,2,1,2,2,1
 2,12,8,0,192,124,80,1,1,1,1,1,1
 3,5,8,3,192,193,4,0,0,0,0,1,0
@@ -32,4 +32,4 @@
 31,48,8,0,192,155,85,1,2,0,0,2,1
 32,39,8,4,192,143,88,2,2,2,2,2,2
 33,40,8,6,192,143,89,0,0,0,1,0,0
-34,38,8,7,192,162,68,0,0,0,0,0
+34,38,8,7,192,162,68,0,0,0,0,0,0
