@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Email Template</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #333333;
+        }
+        p {
+            color: #555555;
+        }
+        .details {
+            margin-top: 20px;
+        }
+        .details div {
+            margin-bottom: 10px;
+        }
+        .details strong {
+            display: inline-block;
+            width: 150px;
+            font-weight: bold;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .signature {
+            margin-top: 20px;
+            text-align: right;
+            font-style: italic;
+            font-size: 14px;
+            color: #888888;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Добрый день <span th:text="${recipient}"></span>!</h1>
+    <h2>Вы записались на лекцию!</h2>
+    <p>Ниже приведены детали вашей записи:</p>
+    <div class="details">
+        <div>
+            <strong>Лектор:</strong> <span th:text="${fio}"></span>
+        </div>
+        <div>
+            <strong>Время:</strong> <span th:text="${date}"></span>
+        </div>
+        <div>
+            <strong>Длительность:</strong> <span th:text="${meetRange}"></span>
+        </div>
+        <div>
+            <strong>Направление:</strong> <span th:text="${subject}"></span>
+        </div>
+        <div>
+            <strong>Описание:</strong> <span th:text="${description}"></span>
+        </div>
+        <div>
+            <strong>Площадка для встречи:</strong> <span th:text="${place}"></span>
+        </div>
+    </div>
+    <p>Пожалуйста, используйте ссылку ниже для получения дополнительной информации и доступа к встрече:</p>
+    <a th:href="${link}" class="button">Ссылка на встречу</a>
+    <div class="signature">By Omnia Team</div>
+</div>
+</body>
+</html>

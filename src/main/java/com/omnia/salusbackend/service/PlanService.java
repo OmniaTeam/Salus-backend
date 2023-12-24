@@ -28,8 +28,8 @@ public class PlanService {
 
    public void checkSpeakerScheduler(Long speakerId, LocalDateTime date, Integer meetRange) {
        SpeakerEntity speaker = speakerRepository.findById(speakerId).orElseThrow();
-       if (date.isBefore(ChronoLocalDateTime.from(speaker.getStartTime())) ||
-               date.isAfter(ChronoLocalDateTime.from(speaker.getEndTime()))
+       if (date.toLocalTime().isBefore((speaker.getStartTime())) ||
+               date.toLocalTime().isAfter((speaker.getEndTime()))
        ) throw new NotFoundException("");
        LocalDateTime startOfDay = date.toLocalDate().atStartOfDay();
        LocalDateTime endOfDay = date.toLocalDate().atTime(LocalTime.MAX);

@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
+import java.time.LocalDateTime;
+
 @Service
 @RequiredArgsConstructor
 public class GmailService {
@@ -18,11 +20,11 @@ public class GmailService {
     public final JavaMailSender emailSender;
     private final TemplateEngine templateEngine;
 
-    public void sendSimpleEmail(String toAddress, String fio, String lector, Integer meetRange, String subject, String description, String place, String link) {
+    public void sendSimpleEmail(String toAddress, String fio, LocalDateTime date ,String lector, Integer meetRange, String subject, String description, String place, String link) {
 
         MimeMessage message = emailSender.createMimeMessage();
 
-        String htmlContent = templateEngine.process("temp.html", createContext(fio, lector, meetRange, subject, description, place, link));
+        String htmlContent = templateEngine.process("temp.html", createContext(fio,date, lector, meetRange, subject, description, place, link));
 
         try {
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
@@ -38,9 +40,10 @@ public class GmailService {
     }
 
 
-    private Context createContext(String fio, String lector, Integer meetRange, String subject, String description, String place, String link) {
+    private Context createContext(String fio, LocalDateTime date, String lector, Integer meetRange, String subject, String description, String place, String link) {
         Context context = new Context();
-        context.setVariable("fio", fio);
+        context.setVariable("recipient", fio);
+        context.setVariable("date", date);
         context.setVariable("lector", lector);
         context.setVariable("meetRange", meetRange);
         context.setVariable("subject", subject);

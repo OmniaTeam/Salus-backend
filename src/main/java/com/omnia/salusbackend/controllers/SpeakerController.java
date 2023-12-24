@@ -2,10 +2,7 @@ package com.omnia.salusbackend.controllers;
 
 import com.omnia.salusbackend.dto.MeetDTO;
 import com.omnia.salusbackend.dto.SpeakerDTO;
-import com.omnia.salusbackend.entity.MeetEntity;
-import com.omnia.salusbackend.entity.SpeakerEntity;
-import com.omnia.salusbackend.entity.SubjectEntity;
-import com.omnia.salusbackend.entity.UserEntity;
+import com.omnia.salusbackend.entity.*;
 import com.omnia.salusbackend.repository.SpeakerRepository;
 import com.omnia.salusbackend.service.MeetService;
 import com.omnia.salusbackend.service.SubjectService;
@@ -13,6 +10,7 @@ import com.omnia.salusbackend.service.SubjectSpeakerService;
 import com.omnia.salusbackend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +32,11 @@ public class SpeakerController {
     final private SubjectService subjectService;
 
 
+    @GetMapping
+    ResponseEntity<SpeakerEntity> getSpeaker(Authentication authentication){
+        UserEntity user = ((UserEntity) authentication.getPrincipal());
+        return ResponseEntity.ok(speakerRepository.findByUserId(user.getId()).orElseThrow());
+    }
     @GetMapping("/all")
     public ResponseEntity<List<SpeakerDTO>> getAllSpeaker(){
         List<SpeakerDTO> speakerDTOS = new ArrayList<>();

@@ -11,6 +11,8 @@ public class SignWorkerMeetDTO {
 
     LocalDateTime date;
     Long speakerId;
-    Long workerId;
     Integer meetRange;
+    String connectedType;
+    String connectedLink;
+    String description;
 }
