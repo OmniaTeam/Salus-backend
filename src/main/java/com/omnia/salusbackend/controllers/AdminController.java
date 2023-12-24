@@ -52,10 +52,11 @@ public class AdminController {
 
 
         PlanEntity planEntity = new PlanEntity();
-        planEntity.setMeetId(new_meet.getId());
         planEntity.setSpeakerId(speaker.getId());
         planEntity.setRange(60);
         planEntity.setTime(meet.getDate());
+        planEntity.setMeetId(new_meet.getId());
+
         planRepository.save(planEntity);
         return ResponseEntity.ok().build();
     }
