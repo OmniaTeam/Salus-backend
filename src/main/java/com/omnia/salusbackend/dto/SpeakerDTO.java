@@ -13,4 +13,5 @@ public class SpeakerDTO {
     private String subjectName;
     private Double rating;
     private String description;
+    private Long userId;
 }

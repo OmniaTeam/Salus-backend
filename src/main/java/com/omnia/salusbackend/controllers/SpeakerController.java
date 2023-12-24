@@ -49,8 +49,8 @@ public class SpeakerController {
                     user.getFio(),
                     subject.getName(),
                     speaker.getRating(),
-                    speaker.getDescription()
-
+                    speaker.getDescription(),
+                    user.getId()
             ));
         }
         return ResponseEntity.ok().body(speakerDTOS);
