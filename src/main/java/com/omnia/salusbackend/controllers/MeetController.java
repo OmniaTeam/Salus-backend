@@ -1,6 +1,7 @@
 package com.omnia.salusbackend.controllers;
 
 import com.omnia.salusbackend.dto.MeetDTO;
+import com.omnia.salusbackend.dto.MeetUpdateDTO;
 import com.omnia.salusbackend.entity.EMeetType;
 import com.omnia.salusbackend.service.MeetService;
 import com.omnia.salusbackend.service.WorkerMeetService;
@@ -33,7 +34,7 @@ public class MeetController {
 
 
     @PostMapping("/update")
-    public ResponseEntity<?> update(@RequestBody Map<String, Object> data){
+    public ResponseEntity<?> update(@RequestBody MeetUpdateDTO data){
         meetService.update(data);
         return ResponseEntity.ok().build();
     }

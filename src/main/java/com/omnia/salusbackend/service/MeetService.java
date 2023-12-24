@@ -1,6 +1,7 @@
 package com.omnia.salusbackend.service;
 
 import com.omnia.salusbackend.dto.MeetDTO;
+import com.omnia.salusbackend.dto.MeetUpdateDTO;
 import com.omnia.salusbackend.entity.*;
 import com.omnia.salusbackend.repository.MeetRepository;
 import com.omnia.salusbackend.repository.SpeakerRepository;
@@ -42,8 +43,14 @@ public class MeetService {
         return meetRepository.save(meetEntity);
     }
 
-    public void update(Map<String, Object> data) {
-        JpaUtils.abstractUpdate(data, meetRepository);
+    public void update(MeetUpdateDTO data) {
+        MeetEntity meet = meetRepository.findById(data.getMeet_id()).orElseThrow();
+        meet.setDate(data.getDate());
+        meet.setConnectLink(data.getLink());
+        meet.setName(data.getMeet_name());
+        meet.setConnectType(data.getPlatform());
+
+        meetRepository.save(meet);
     }
 
     public List<MeetDTO> getMeetsMeetsForSpeakerByDate(Long speakerId, LocalDate date) {

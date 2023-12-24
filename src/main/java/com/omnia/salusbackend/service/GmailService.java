@@ -20,13 +20,21 @@ public class GmailService {
 
     public void sendSimpleEmail(String toAddress, String fio, String lector, Integer meetRange, String subject, String description, String place, String link) {
 
+        MimeMessage message = emailSender.createMimeMessage();
+
         String htmlContent = templateEngine.process("temp.html", createContext(fio, lector, meetRange, subject, description, place, link));
 
-        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-        simpleMailMessage.setTo(toAddress);
-        simpleMailMessage.setSubject(fio);
-        simpleMailMessage.setText(htmlContent);
-        emailSender.send(simpleMailMessage);
+        try {
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+            helper.setSubject("Новая запись!");
+            helper.setTo(toAddress);
+            helper.setText(htmlContent, true);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+
+
+        emailSender.send(message);
     }
 
 
@@ -42,8 +50,4 @@ public class GmailService {
         return context;
     }
 
-//    @Bean
-    public void test() {
-        sendSimpleEmail("breev.vadim@yandex.ru", "fio", "lector", 23,"mwekflw", "desc", "place", "link");
-    }
 }
